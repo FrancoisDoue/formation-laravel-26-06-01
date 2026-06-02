@@ -1,11 +1,18 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\StatsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('demo');
 });
+
+Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
+Route::post('/cache/flush', [StatsController::class, 'flush'])
+    ->name('cache.flush')
+    ->middleware('auth');
 
 Route::middleware('auth')
     ->get('/dashboard', fn () => view('dashboard'))
@@ -13,4 +20,10 @@ Route::middleware('auth')
 
 Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
+
+    Route::get('/preferences', [PreferenceController::class, 'index'])
+        ->name('preferences.index');
+
+    Route::post('/preferences', [PreferenceController::class, 'store'])
+        ->name('preferences.store');
 });

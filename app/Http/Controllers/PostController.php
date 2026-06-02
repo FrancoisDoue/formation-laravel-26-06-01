@@ -66,7 +66,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->authorize('update', $post);
-        $validated = $request->validate(['title' => 'required|max:255', 'body' => 'required']);
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'body'  => 'required',
+        ]);
         $post->update($validated);
         return redirect()->route('posts.index')->with('success', 'Article modifié !');
     }
