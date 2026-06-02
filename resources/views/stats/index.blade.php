@@ -21,7 +21,7 @@
 
     @auth
         @if(auth()->user()->isAdmin())
-            <form method="POST" action="{{ route('stats.flush') }}" class="mt-6">
+            <form method="POST" action="{{ route('cache.flush') }}" class="mt-6">
                 @csrf
                 <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
                     🗑 Vider le cache
