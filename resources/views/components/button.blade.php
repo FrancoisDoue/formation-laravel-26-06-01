@@ -1,4 +1,4 @@
-@Props(['variant' => null, 'href' => null])
+@props(['variant' => null, 'href' => null])
 @php
     $classes = match($variant) {
         'primary' => 'bg-blue-500 text-white',
