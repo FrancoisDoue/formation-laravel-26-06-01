@@ -12,6 +12,7 @@
     @auth
         <a href="{{ route('dashboard') }}">Dashboard</a>
         <a href="{{ route('posts.index') }}">Articles</a>
+        <a href="{{ route('newsletters.index') }}">Newsletters</a>
         <span class="text-sm text-gray-500">{{ auth()->user()->name }}</span>
         <form method="POST" action="{{ route('logout') }}" class="ml-auto">@csrf
             <button type="submit" class="text-sm text-red-600">Déconnexion</button>

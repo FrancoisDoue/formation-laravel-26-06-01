@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\StatsController;
@@ -10,6 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
+
 Route::post('/cache/flush', [StatsController::class, 'flush'])
     ->name('cache.flush')
     ->middleware('auth');
@@ -27,3 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/preferences', [PreferenceController::class, 'store'])
         ->name('preferences.store');
 });
+
+Route::resource('newsletters', NewsletterController::class)
+    ->only(['index', 'create', 'store'])
+    ->middleware('admin');
